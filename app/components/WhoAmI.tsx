@@ -254,7 +254,7 @@ export default function AboutMe() {
                               const idx = prev.findIndex((s) => s.id === slide.id)
                               if (idx === -1) return prev
                               const fresh = images.find((s) => s.id === slide.id)
-                              if (!fresh) return
+                              if (!fresh) return prev
                               const next = [...prev]
                               next[idx] = fresh
                               return next

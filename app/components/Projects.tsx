@@ -46,8 +46,15 @@ export default function Projects() {
 
         // Use GET data only (public API is GET-only)
         const projectsData = getData.projects || []
-        setProjects(projectsData)
-        setFilteredProjects(projectsData)
+        
+        // Sort projects initially: featured ones first
+        const sortedProjects = [...projectsData].sort((a: Project, b: Project) => {
+          if (a.featured === b.featured) return 0;
+          return a.featured ? -1 : 1;
+        });
+        
+        setProjects(sortedProjects)
+        setFilteredProjects(sortedProjects)
 
         // Initialize loading states for all projects
         const initialLoadingStates = projectsData.reduce((acc: Record<string, boolean>, project: Project) => {
